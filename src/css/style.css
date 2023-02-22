@@ -52,3 +52,19 @@
 .letras button.jogo-iniciado{
     background-color: #E1ECF4;
 }
+.palavra{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 61px;
+    margin-bottom: 100px;
+}
+.palavra div{
+    margin-right: 15px;
+    font-family: Noto Sans;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 68px;
+    letter-spacing: 0em;
+    text-align: center;
+
+}
