@@ -6,7 +6,14 @@ import forca4 from "../assets/forca4.png";
 import forca5 from "../assets/forca5.png";
 import forca6 from "../assets/forca6.png";
 
-export default function Jogo({setHabilitarLetras, contarErros, palavras, palavraEscolhida, setPalavraEscolhida}){
+export default function Jogo({habilitarLetras, 
+  setHabilitarLetras, 
+  contarErros, 
+  palavras, 
+  palavraEscolhida, 
+  setPalavraEscolhida, 
+  palavraEscondida, 
+  setPalavraEscondida}){
 
   const imagens = [forca0, forca1, forca2, forca3, forca4, forca5, forca6];
 
@@ -14,11 +21,15 @@ export default function Jogo({setHabilitarLetras, contarErros, palavras, palavra
 
     const indiceAleatorio = Math.floor(Math.random()*palavras.length);
     const palavra = palavras[indiceAleatorio].split('');
-    
+
     setPalavraEscolhida([...palavra]);
+
+    setPalavraEscondida([...palavra.map(() => "_")]);
+
+
   }
-  function habilitarLetras(){
-    setHabilitarLetras(false);
+  function habilitar(){
+    setHabilitarLetras(habilitarLetras.map(() => false));
     escolherPalavra();
 
   }
@@ -26,10 +37,10 @@ export default function Jogo({setHabilitarLetras, contarErros, palavras, palavra
     <>
     <div className="jogo">
       <img src={imagens[contarErros]} alt="imagem-forca"/>
-      <button onClick={habilitarLetras}>Escolher palavra</button>
+      <button onClick={habilitar}>Escolher palavra</button>
     </div>
      <div className="palavra">
-     {palavraEscolhida.map(letra => <div>_</div>)}
+     {palavraEscolhida.map((letra,index) => <div key={index}>{palavraEscondida[index]}</div>)}
     </div>
     </>
     );
