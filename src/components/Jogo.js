@@ -8,7 +8,8 @@ import forca6 from "../assets/forca6.png";
 
 export default function Jogo({habilitarLetras, 
   setHabilitarLetras, 
-  contarErros, 
+  contarErros,
+  setContarErros, 
   palavras, 
   palavraEscolhida, 
   setPalavraEscolhida, 
@@ -31,7 +32,7 @@ export default function Jogo({habilitarLetras,
   function habilitar(){
     setHabilitarLetras(habilitarLetras.map(() => false));
     escolherPalavra();
-
+    setContarErros(0);
   }
     return (
     <>
@@ -40,7 +41,12 @@ export default function Jogo({habilitarLetras,
       <button onClick={habilitar}>Escolher palavra</button>
     </div>
      <div className="palavra">
-     {palavraEscolhida.map((letra,index) => <div key={index}>{palavraEscondida[index]}</div>)}
+     {palavraEscolhida.map((letra,index) => <div className=
+     {contarErros === 6 ? 
+      "perdeu" : 
+      (palavraEscondida.join('') === palavraEscolhida.join('') ?
+     "ganhou":"")} 
+     key={index}>{palavraEscondida[index]}</div>)}
     </div>
     </>
     );

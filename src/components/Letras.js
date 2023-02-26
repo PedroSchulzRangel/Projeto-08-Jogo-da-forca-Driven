@@ -1,7 +1,6 @@
 export default function Letras({habilitarLetras, 
     setHabilitarLetras, 
-    palavraEscolhida, 
-    setPalavraEscolhida, 
+    palavraEscolhida,  
     palavraEscondida, 
     setPalavraEscondida,
     contarErros,
@@ -9,9 +8,10 @@ export default function Letras({habilitarLetras,
 
     const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-    function mostrarLetra(letra,i){
+    function mostrarLetra(letra){
 
         const palavraRevelada = palavraEscondida;
+        let contador = contarErros;
 
         for(let j = 0; j < palavraEscolhida.length; j++){
 
@@ -21,8 +21,10 @@ export default function Letras({habilitarLetras,
             }
         }
         if(!palavraEscolhida.includes(letra)){
-            setContarErros(contarErros + 1);
+            contador = (contarErros + 1)
+            setContarErros(contador);
         }
+        return contador;
     }
 
     function desabilitarLetra(letra, i){
@@ -33,7 +35,13 @@ export default function Letras({habilitarLetras,
             }
         }
         setHabilitarLetras([...arrayBooleano]);
-        mostrarLetra(letra,i);
+        const contador = mostrarLetra(letra);
+        if(palavraEscondida.join('') === palavraEscolhida.join('') || contador === 6){
+            setHabilitarLetras(habilitarLetras.map(() => true));
+        }
+        if(contador === 6){
+            setPalavraEscondida([...palavraEscolhida]);
+        }
     }
 
     return (
