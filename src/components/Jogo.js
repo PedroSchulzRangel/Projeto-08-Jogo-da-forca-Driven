@@ -37,11 +37,11 @@ export default function Jogo({habilitarLetras,
     return (
     <>
     <div className="jogo">
-      <img src={imagens[contarErros]} alt="imagem-forca"/>
-      <button onClick={habilitar}>Escolher palavra</button>
+      <img data-test="game-image" src={imagens[contarErros]} alt="imagem-forca"/>
+      <button data-test="choose-word" onClick={habilitar}>Escolher palavra</button>
     </div>
      <div className="palavra">
-     {palavraEscolhida.map((letra,index) => <div className=
+     {palavraEscolhida.map((letra,index) => <div data-test="word" className=
      {contarErros === 6 ? 
       "perdeu" : 
       (palavraEscondida.join('') === palavraEscolhida.join('') ?

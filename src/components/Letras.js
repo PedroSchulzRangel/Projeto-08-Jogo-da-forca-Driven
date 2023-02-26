@@ -47,7 +47,7 @@ export default function Letras({habilitarLetras,
     return (
     <div className="letras">
     {alfabeto.map((letraDoAlfabeto,index) =>
-    <button key={index} onClick={() => desabilitarLetra(letraDoAlfabeto,index)} className={habilitarLetras[index] ? "estado-inicial" : "jogo-iniciado"} 
+    <button data-test="letter" key={index} onClick={() => desabilitarLetra(letraDoAlfabeto,index)} className={habilitarLetras[index] ? "estado-inicial" : "jogo-iniciado"} 
     disabled={habilitarLetras[index]}>{letraDoAlfabeto}</button>)}
     </div>
     );
