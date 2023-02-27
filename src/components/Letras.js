@@ -1,7 +1,7 @@
-export default function Letras({habilitarLetras, 
-    setHabilitarLetras, 
-    palavraEscolhida,  
-    palavraEscondida, 
+export default function Letras({habilitarLetras,
+    setHabilitarLetras,
+    palavraEscolhida,
+    palavraEscondida,
     setPalavraEscondida,
     contarErros,
     setContarErros}){
@@ -21,7 +21,7 @@ export default function Letras({habilitarLetras,
             }
         }
         if(!palavraEscolhida.includes(letra)){
-            contador = (contarErros + 1)
+            contador = (contarErros + 1);
             setContarErros(contador);
         }
         return contador;
@@ -29,17 +29,18 @@ export default function Letras({habilitarLetras,
 
     function desabilitarLetra(letra, i){
         const arrayBooleano = habilitarLetras;
+        const numeroLimiteErros = 6;
         for(let j = 0; j < arrayBooleano.length; j++){
             if(j === i){
-                arrayBooleano[j] = true; 
+                arrayBooleano[j] = true;
             }
         }
         setHabilitarLetras([...arrayBooleano]);
         const contador = mostrarLetra(letra);
-        if(palavraEscondida.join('') === palavraEscolhida.join('') || contador === 6){
+        if(palavraEscondida.join('') === palavraEscolhida.join('') || contador === numeroLimiteErros){
             setHabilitarLetras(habilitarLetras.map(() => true));
         }
-        if(contador === 6){
+        if(contador === numeroLimiteErros){
             setPalavraEscondida([...palavraEscolhida]);
         }
     }
@@ -47,7 +48,10 @@ export default function Letras({habilitarLetras,
     return (
     <div className="letras">
     {alfabeto.map((letraDoAlfabeto,index) =>
-    <button data-test="letter" key={index} onClick={() => desabilitarLetra(letraDoAlfabeto,index)} className={habilitarLetras[index] ? "estado-inicial" : "jogo-iniciado"} 
+    <button data-test="letter"
+    key={index}
+    onClick={() => desabilitarLetra(letraDoAlfabeto,index)}
+    className={habilitarLetras[index] ? "estado-inicial" : "jogo-iniciado"}
     disabled={habilitarLetras[index]}>{letraDoAlfabeto}</button>)}
     </div>
     );

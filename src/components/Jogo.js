@@ -6,17 +6,18 @@ import forca4 from "../assets/forca4.png";
 import forca5 from "../assets/forca5.png";
 import forca6 from "../assets/forca6.png";
 
-export default function Jogo({habilitarLetras, 
-  setHabilitarLetras, 
+export default function Jogo({habilitarLetras,
+  setHabilitarLetras,
   contarErros,
-  setContarErros, 
-  palavras, 
-  palavraEscolhida, 
-  setPalavraEscolhida, 
-  palavraEscondida, 
+  setContarErros,
+  palavras,
+  palavraEscolhida,
+  setPalavraEscolhida,
+  palavraEscondida,
   setPalavraEscondida}){
 
   const imagens = [forca0, forca1, forca2, forca3, forca4, forca5, forca6];
+  const numeroErrosLimite = 6;
 
   function escolherPalavra(){
 
@@ -42,10 +43,10 @@ export default function Jogo({habilitarLetras,
     </div>
      <div className="palavra">
      {palavraEscolhida.map((letra,index) => <div data-test="word" className=
-     {contarErros === 6 ? 
-      "perdeu" : 
-      (palavraEscondida.join('') === palavraEscolhida.join('') ?
-     "ganhou":"")} 
+     {contarErros === numeroErrosLimite?
+      "perdeu" :
+      (palavraEscondida.join('') === palavraEscolhida.join('')?
+     "ganhou":"")}
      key={index}>{palavraEscondida[index]}</div>)}
     </div>
     </>
